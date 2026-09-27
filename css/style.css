@@ -1,0 +1,283 @@
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Black.ttf");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-SemiBold.ttf");
+     font-weight: 600;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Bold.ttf");
+     font-weight: 700;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Regular.ttf");
+     font-weight: 400;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-SemiBold.ttf");
+     font-weight: 600;
+}
+
+
+body{
+    background-color: #f3f5f6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DMSans";
+    
+}
+
+.header {
+    background-color: white;
+    padding: 20px 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.dataAtual {
+    font-family: "DMSans";
+    font-weight: 400;
+}
+
+.logo {
+    font-family: "DMSans";
+    font-weight: bold;
+}
+
+.content {
+    margin: 28px 50px;
+    
+}
+
+.tittleContainer {
+    padding: 20px 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.texts {
+    display: flex;
+    flex-direction:column;
+    gap: 8px;
+}
+
+.textAccent {
+    font-family: "IBM PLEX";
+    font-weight: 400;
+    color: #61b538;
+    font-size: 9px;
+}
+
+.tittle {
+    font-family: "DMsans";
+    font-weight: 600;
+    font-size: 33px;
+    font-style: normal; 
+}
+
+.slogan {
+    color: #66706b;
+    font-family: "DMSans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400px;
+}
+
+.btnContent {
+    display: flex;
+    align-items: last baseline;
+
+}
+
+.btn {
+    color: #3a3939;
+    background-color: #61b538;
+    display: flex;
+    border-radius: 6px;
+    gap: 7px;
+    padding: 15px; 
+    font-family: "DMSans";
+    font-weight: 600;
+}
+.cards {
+    display: flex;
+    padding: 28px 38px 56px 38px;
+    margin-top: 25px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #EDF0f1;
+    justify-content: space-around;
+}
+
+.todosOsPedidos {
+    width: 3px;
+    height: 10px;
+    background-color: #8ee85d;
+    font-family: "DMSans";
+    font-weight: 600;
+    color: #66706b;
+    font-size: 9px;
+    font-style: normal;
+    display: flex;
+    height: 83px;
+}
+
+.pendentes {
+    width: 3px;
+    height: 10px;
+    background-color: #f59e0b;
+    font-family: "DMSans";
+    font-weight: 600;
+    color: #66706b;
+    font-size: 9px;
+    font-style: normal;
+    display: flex;
+    height: 83px;
+}
+
+.emPreparo {
+    width: 3px;
+    height: 10px;
+    background-color: #3478f6;
+    font-family: "DMSans";
+    font-weight: 600;
+    color: #66706b;
+    font-size: 9px;
+    font-style: normal;
+    display: flex;
+    height: 83px;
+}
+
+.concluidos {
+    width: 3px;
+    height: 10px;
+    background-color: #16a34a;
+    font-family: "DMSans";
+    font-weight: 600;
+    color: #66706b;
+    font-size: 9px;
+    font-style: normal;
+    display: flex;
+    height: 83px;
+}
+
+.grupo{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    margin-bottom:15px;
+}
+.labelPedido {
+    color: #171a19;
+    font-family: "DMSans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.inputPedido {
+    height:38px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "DMSans";
+    border: 0.8px solid #D3D9D7;
+    border-radius: 6px;
+}
+
+.inputPedido:focus{
+     outline: none;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.novoPedido{
+    min-width: 70%;
+    border:none;
+    box-shadow: 0 24px 64px 0 rgba(18,28,23,0.20);
+    border-radius: 8px;
+    border-top:3px solid #8ee85d;
+
+}
+
+.action{
+    color:#66706B
+}
+
+.mb20{
+    margin-bottom: 20px;
+}
+
+.mt20{
+    margin-top: 20px;
+}
+
+.info{
+    color: #66706B;
+    border-left: 3px solid #8ee85d;
+    font-size: 12px;
+    padding: 9px;
+}
+.info i {
+    margin-right:7px;
+}
+
+.grupoBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px
+}
+
+.btnCancel{
+    color: #3a3939;
+    display: flex;
+    border-radius: 6px;
+    background-color: white;
+    gap: 7px;
+    padding: 15px;
+    cursor: pointer;
+    font-family: "DMSans";
+    font-weight: 600;
+}
+
