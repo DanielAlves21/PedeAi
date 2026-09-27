@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PedeAí</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">PedeAí</div>
+        <div class="dataAtual"><span id="dataAtual">26/09/2026</span></div>
+    </div>
+    <div class="content">
+        <div class="tittleContainer">
+            <div class="texts">
+                <span class="textAccent">VISÃO GERAL</span>
+                <span class="tittle">GESTÃO DE PEDIDOS</span>
+                <span class="slogan">Acompanhe cada pedido, do cadastro à conclusão</span>
+                
+            </div>
+            <div class="btnContent">
+                <button class="btn" id="btnNewOrder">+ Novo pedido</button>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="todosOsPedidos">TODOS OS PEDIDOS</div>
+            <div class="pendentes">PENDENTES</div>
+            <div class="emPreparo">EM PREPARO</div>
+            <div class="concluidos">CONCLUÍDOS</div>
+                    
+        </div>
+    </div>
+    <dialog class="novoPedido" id="dialogNovoPedido">
+        <div class="row mb20">
+          <div class="texts">
+             <span class="textAccent">NOVO PEDIDO</span>
+                <span class="tittleDialog">Registrar novo pedido</span>
+                <span class="slogan">Preencha os dados recebidos do cliente.</span>
+          </div>
+          <div class="action">
+            <i class="fa-solid fa-x" id="closeIcon"></i>
+          </div>
+        </div>
+        
+            <div class="grupo">
+                <label class="labelPedido" for="cliente">Nome do cliente </label> 
+                <input class="inputPedido" type="text" id="cliente" placeholder="Ex: Daniel Anjos">
+            </div>
+            <div class="grupo">
+                <label class="labelPedido" for="pedido">Descrição do Pedido </label> 
+                <input class="inputPedido" type="text" id="pedido" placeholder="Descreva o pedido">
+            </div>
+            <div class="grupo">
+                <label class="labelPedido" for="valor">Valor do Pedido</label> </label> 
+                <input class="inputPedido" type="number" id="valor" placeholder="R$ 0,00">
+            </div>
+            <div class="grupo">
+                <label class="labelPedido" for="observacoes">Observações </label> 
+                <input class="inputPedido" type="text" id="observacoes" placeholder="Preferências, local de entrega ou outros detalhes">
+            </div>
+            <div class="info">
+               <i class="fa-duotone fa-solid fa-clock"></i> A data e a hora serão registradas automaticamente, com o status pendente.
+            </div>
+            <div class="grupoBtn mt20">
+                <button class="btnCancel" id="btnCancelNovoPedido">Cancelar</button>
+                <button class="btn" id="btnRegistrarPedido">Registrar Pedido</button>
+            </div>
+        
+        
+        
+
+         
+    </dialog>
+    <script src="./js/script.js">  
+    </script>
+</body>
+</html>
