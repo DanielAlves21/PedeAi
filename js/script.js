@@ -1,3 +1,5 @@
+let listaPedidoGlobal = JSON.parse(localStorage.getItem("pedidos")) || [];
+
 const button = document.querySelector("#btnNewOrder");
 const dialogNovoPedido = document.querySelector ("#dialogNovoPedido");
 
@@ -52,6 +54,9 @@ btnRegistrarPedido.onclick = function() {
     descPedido.value = '';
     valorPedido.value = '';
     observacoesPedido.value = '';
+
+    // passar para a lista de pedidos global
+    listaPedidoGlobal = listaPedidos;
 
     //fechando a dialog
     dialogNovoPedido.close();
