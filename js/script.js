@@ -31,13 +31,19 @@ btnRegistrarPedido.onclick = function() {
        return false;
     }
 
-    ''
+    const dataHora = new Date();
+    const hora = dataHora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit"});
+    const data = dataHora.toLocaleTimeString("pt-BR");
+
+
     // montando o objeto JSON do pedido
     let pedidoObj = {
         "nomeCliente": clientePedido.value,
         "descPedido":  descPedido.value,
         "valorPedido": valorPedido.value,
-        "observacoesPedido": observacoesPedido.value
+        "observacoesPedido": observacoesPedido.value,
+        "statusPedido": "Pendente",
+        "dataHora": data+" - "+hora
     }
     
     //capturando lista de pedidos do localStorage, se não tiver pedidos retorna um array vazio
@@ -64,8 +70,69 @@ btnRegistrarPedido.onclick = function() {
     //informando ao usuario feedback de sucesso
     alert("Pedido cadastrado com sucesso");
 
+}
+
+
+
+function listagemPedidos(){
+    const listaContainer = document.getElementById("listaPedidosContainer");
+
+    listaContainer.innerHTML = "";
+    
+    if(listaPedidoGlobal.length === 0 ){
+        listaContainer.innerHTML = `<div class="vazio"> Nenhum pedido cadastrado </div>`;
+
+        return false;
+    }
+
+    listaPedidoGlobal.forEach((pedido, index) => {
+
+        const elementItem = document.createElement("div");
+
+        elementItem.classList.add("pedidoItem");
+
+        elementItem.innerHTML = `
+
+            <div class="row">
+                <div class="dadosPedido">
+                    <span class="idPedido"> #${index}</span>
+                    <span class="clientePedido">${pedido.nomeCliente}</span>
+                    <span class="descPedido">${pedido.descPedido}</span>
+                    <span class="ObsPedido">${pedido.observacoesPedido}</span>
+                </div>
+                <div>
+                    <span class="statusPedido">${pedido.statusPedido}</span>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="valorContainer">
+                    <span class="valorPedido">${pedido.valorPedido}</span>
+                    <span class="horaPedido">${pedido.dataHora}</span>
+                </div>
+                <div>
+                    <div class="selectStatus">
+                        <select>
+                            <option value="Pendente" ${pedido.statusPedido === "Pendente" ? "selected" : ""}>Pendente</option>
+                            <option value="Em andamento" ${pedido.statusPedido === "Em andamento" ? "selected" : ""}>Em andamento</option>
+                            <option value="Concluído" ${pedido.statusPedido === "Concluído" ? "selected" : ""}>Concluído</option>
+                        </select>
+                    </div>
+                    <button class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></i></button>
+                    <button class="btnExcluir"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        `;
+
+        listaContainer.appendChild(elementItem);
+    
+    });
 
 
 
 }
+
+listagemPedidos();
 
