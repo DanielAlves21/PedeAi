@@ -3,10 +3,17 @@ let listaPedidoGlobal = JSON.parse(localStorage.getItem("pedidos")) || [];
 const button = document.querySelector("#btnNewOrder");
 const dialogNovoPedido = document.querySelector ("#dialogNovoPedido");
 
+// inputs novo pedido
 const clientePedido = document.querySelector("#cliente");
 const descPedido = document.querySelector("#pedido");
 const valorPedido = document.querySelector("#valor");
 const observacoesPedido = document.querySelector("#observacoes");
+
+//cards de contagem dos pedidos
+const totalPedidos = document.querySelector("#totalPedidos");
+const totalPendentes = document.querySelector("#totalPendentes");
+const totalEmAndamento = document.querySelector("#totalEmAndamento");
+const totalConcluidos = document.querySelector("#totalConcluidos");
 
 button.onclick = function () {
     dialogNovoPedido.showModal()
@@ -73,24 +80,28 @@ btnRegistrarPedido.onclick = function() {
 }
 
 
-
+ 
 function listagemPedidos(){
+    // criando constante referente a div onde vai ficar a visualização dos pedidos.
     const listaContainer = document.getElementById("listaPedidosContainer");
 
     listaContainer.innerHTML = "";
     
+    // verificando se a lista de pedidos global está vazia. 
+    // se tiver vazia aparece mensagem de pedido não cadastrado.
     if(listaPedidoGlobal.length === 0 ){
         listaContainer.innerHTML = `<div class="vazio"> Nenhum pedido cadastrado </div>`;
 
         return false;
     }
 
+    // crianfo a visualização dos pedidos, com a estrutura de repetição forEach.
     listaPedidoGlobal.forEach((pedido, index) => {
-
+    // criando elementto div, que vai receber os dados do pedido.
         const elementItem = document.createElement("div");
-
+    //adicionando a classe pedidoItem ao elemento div criado anteriormente.
         elementItem.classList.add("pedidoItem");
-
+    //atribuindo estrutura HTML e os dados do pedido ao elemento div criado anteriormente.
         elementItem.innerHTML = `
 
             <div class="row">
@@ -112,7 +123,8 @@ function listagemPedidos(){
                     <span class="valorPedido">${pedido.valorPedido}</span>
                     <span class="horaPedido">${pedido.dataHora}</span>
                 </div>
-                <div>
+
+                <div class="acoesPedido">
                     <div class="selectStatus">
                         <select>
                             <option value="Pendente" ${pedido.statusPedido === "Pendente" ? "selected" : ""}>Pendente</option>
@@ -120,13 +132,25 @@ function listagemPedidos(){
                             <option value="Concluído" ${pedido.statusPedido === "Concluído" ? "selected" : ""}>Concluído</option>
                         </select>
                     </div>
-                    <button class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></i></button>
+                    <button class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
                     <button class="btnExcluir"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         `;
-
+        //adicionando a div container o elemento filho que contém as informações do pedido.
         listaContainer.appendChild(elementItem);
+
+        //Contagem de pedidos totais e por status
+        let pendentes = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Pendente").length;
+        let emAndamento = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Em Andamento").length;
+        let concluidos = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Concluído").length;
+        let totalPedidosQtd = listaPedidoGlobal.length;
+
+        //adicionando quantidas aos cards respectivos
+        totalConcluidos.innerHTML = concluidos + " finalizados";
+        totalEmAndamento.innerHTML = emAndamento + " em andamento agora";
+        totalPendentes.innerHTML = pendentes + " aguardando inicio";
+        totalPedidos.innerHTML = totalPedidosQtd + " pedidos cadastrados";
     
     });
 
@@ -135,4 +159,6 @@ function listagemPedidos(){
 }
 
 listagemPedidos();
+
+
 
