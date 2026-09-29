@@ -64,7 +64,7 @@ body{
 
 .header {
     background-color: white;
-    padding: 20px 38px;
+    padding: 0px 38px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;  
@@ -102,7 +102,7 @@ body{
     font-family: "IBM PLEX";
     font-weight: 400;
     color: #61b538;
-    font-size: 9px;
+    font-size: 12px;
 }
 
 .tittle {
@@ -115,7 +115,7 @@ body{
 .slogan {
     color: #66706b;
     font-family: "DMSans";
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400px;
 }
@@ -127,7 +127,7 @@ body{
 }
 
 .btn {
-    color: #3a3939;
+    color: white;
     background-color: #61b538;
     display: flex;
     border-radius: 6px;
@@ -135,67 +135,64 @@ body{
     padding: 15px; 
     font-family: "DMSans";
     font-weight: 600;
+    cursor: pointer;
+}
+
+#btnNewOrder{
+    align-items: center;
 }
 .cards {
-    display: flex;
-    padding: 28px 38px 56px 38px;
+    display: grid;
+    padding: 20px;
     margin-top: 25px;
-    padding: 10px;
     border-radius: 12px;
     background-color: #EDF0f1;
-    justify-content: space-around;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.cardItem{
+     background-color: white;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     border-radius: 8px;   
+}
+
+.titleCard{
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.valueCard{
+    font-size: 14px;
+    color:#98A19C;
+}
+
+.numberCard{
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-left: 10px;
+    color:#171A19;
 }
 
 .todosOsPedidos {
-    width: 3px;
-    height: 10px;
-    background-color: #8ee85d;
-    font-family: "DMSans";
-    font-weight: 600;
-    color: #66706b;
-    font-size: 9px;
-    font-style: normal;
-    display: flex;
-    height: 83px;
+    border-left: 3px solid #8ee85d;
 }
 
 .pendentes {
-    width: 3px;
-    height: 10px;
-    background-color: #f59e0b;
-    font-family: "DMSans";
-    font-weight: 600;
-    color: #66706b;
-    font-size: 9px;
-    font-style: normal;
-    display: flex;
-    height: 83px;
+    border-left: 3px solid #f59e0b;
 }
 
 .emPreparo {
-    width: 3px;
-    height: 10px;
-    background-color: #3478f6;
-    font-family: "DMSans";
-    font-weight: 600;
-    color: #66706b;
-    font-size: 9px;
-    font-style: normal;
-    display: flex;
-    height: 83px;
+    border-left: 3px solid #3478f6;
 }
 
 .concluidos {
-    width: 3px;
-    height: 10px;
-    background-color: #16a34a;
-    font-family: "DMSans";
-    font-weight: 600;
-    color: #66706b;
-    font-size: 9px;
-    font-style: normal;
-    display: flex;
-    height: 83px;
+    border-left: 3px solid #16a34a;
 }
 
 .grupo{
@@ -281,3 +278,675 @@ body{
     font-weight: 600;
 }
 
+
+.pedidosContent{
+    border-radius: 10px;
+    box-shadow: 0 24px 64px 0 rgba(18,28,23,0.20);
+    margin-top: 20px;
+}
+
+.titlePedidos{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.textTitlePedidos{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.subTitle{
+    font-size: 12px;
+    color: #66706B;
+}
+
+.statusPedido{
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 10px;
+    font-weight: bold;
+    
+}
+
+.statusPEN{
+    background-color: #f59e0b;
+}
+
+.statusEmAndamento{
+    background-color: #3478f6;
+    color:white;
+}
+
+.statusCON{
+    background-color: #16a34a;
+    color:white;
+}
+
+.totalStyle{
+    border: #16a34a 1px solid;
+}
+
+#listaPedidosContainer{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pedidoItem{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 0.8px solid #E4E8E7;
+    background: #FFF;
+}
+
+.dadosPedido{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.firstRow{
+    padding-bottom: 10px;
+    border-bottom: 0.8px solid #E4E8E7;
+    margin-bottom: 10px;
+}
+
+.idPedido{
+    color: #5EAE36;
+    font-family: "IBM PLEX";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.clientePedido{
+    color: #171A19;
+    font-family: "DMSans";
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.descPedido{
+    color: #66706B;
+    font-family: "DMSans";
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.obsPedido{
+    color: #98A19C;
+    font-family: "DMSans";
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.valorContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+
+.valorPedido{
+    color: #171A19;
+    font-family: "DMSans";
+    font-size: 20px;
+    font-weight: 700;
+    
+}
+
+.horaPedido{
+    color: #98A19C;
+    font-family: "DMSans";
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap:8px;
+    align-items: center;
+}
+
+.acoesPedido{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.btnEditar{
+    display: flex;
+    min-height: 32px;
+    padding: 0 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.btnExcluir{
+    display: flex;
+    min-height: 32px;
+    padding: 0 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.btnExcluir:hover{
+    background-color: rgba(251, 209, 209, 0.923);
+    color:#c00e0e
+}
+
+.btnEditar:hover{
+    background-color: rgba(219, 251, 209, 0.923);
+    color:#11c00e
+}
+
+select option {
+    background-color: white;
+    color: #333;
+}
+
+select{
+    border: none;
+    height: 30px;
+    font-size: 12px !important;
+}
+
+.logo img{
+    width: 159.91px;
+    height: 68.33px;
+}
+
+.dataAtual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Black.ttf");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url("../fontes/DMSans_18pt-SemiBold.ttf");
+     font-weight: 600;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Bold.ttf");
+     font-weight: 700;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-Regular.ttf");
+     font-weight: 400;
+}
+
+@font-face {
+    font-family: "IBM PLEX";
+    src: url("../fontes/IBMPlexMono-SemiBold.ttf");
+     font-weight: 600;
+}
+
+
+body{
+    background-color: #f3f5f6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DMSans";
+    
+}
+
+.header {
+    background-color: white;
+    padding: 0px 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.dataAtual {
+    font-family: "DMSans";
+    font-weight: 400;
+}
+
+.logo {
+    font-family: "DMSans";
+    font-weight: bold;
+}
+
+.content {
+    margin: 28px 50px;
+    
+}
+
+.tittleContainer {
+    padding: 20px 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.texts {
+    display: flex;
+    flex-direction:column;
+    gap: 8px;
+}
+
+.textAccent {
+    font-family: "IBM PLEX";
+    font-weight: 400;
+    color: #61b538;
+    font-size: 12px;
+}
+
+.tittle {
+    font-family: "DMsans";
+    font-weight: 600;
+    font-size: 33px;
+    font-style: normal; 
+}
+
+.slogan {
+    color: #66706b;
+    font-family: "DMSans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400px;
+}
+
+.btnContent {
+    display: flex;
+    align-items: last baseline;
+
+}
+
+.btn {
+    color: white;
+    background-color: #61b538;
+    display: flex;
+    border-radius: 6px;
+    gap: 7px;
+    padding: 15px; 
+    font-family: "DMSans";
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#btnNewOrder{
+    align-items: center;
+}
+.cards {
+    display: grid;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 12px;
+    background-color: #EDF0f1;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.cardItem{
+     background-color: white;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     border-radius: 8px;   
+}
+
+.titleCard{
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.valueCard{
+    font-size: 14px;
+    color:#98A19C;
+}
+
+.numberCard{
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-left: 10px;
+    color:#171A19;
+}
+
+.todosOsPedidos {
+    border-left: 3px solid #8ee85d;
+}
+
+.pendentes {
+    border-left: 3px solid #f59e0b;
+}
+
+.emPreparo {
+    border-left: 3px solid #3478f6;
+}
+
+.concluidos {
+    border-left: 3px solid #16a34a;
+}
+
+.grupo{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    margin-bottom:15px;
+}
+.labelPedido {
+    color: #171a19;
+    font-family: "DMSans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.inputPedido {
+    height:38px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "DMSans";
+    border: 0.8px solid #D3D9D7;
+    border-radius: 6px;
+}
+
+.inputPedido:focus{
+     outline: none;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.novoPedido{
+    min-width: 70%;
+    border:none;
+    box-shadow: 0 24px 64px 0 rgba(18,28,23,0.20);
+    border-radius: 8px;
+    border-top:3px solid #8ee85d;
+
+}
+
+.action{
+    color:#66706B
+}
+
+.mb20{
+    margin-bottom: 20px;
+}
+
+.mt20{
+    margin-top: 20px;
+}
+
+.info{
+    color: #66706B;
+    border-left: 3px solid #8ee85d;
+    font-size: 12px;
+    padding: 9px;
+}
+.info i {
+    margin-right:7px;
+}
+
+.grupoBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px
+}
+
+.btnCancel{
+    color: #3a3939;
+    display: flex;
+    border-radius: 6px;
+    background-color: white;
+    gap: 7px;
+    padding: 15px;
+    cursor: pointer;
+    font-family: "DMSans";
+    font-weight: 600;
+}
+
+
+.pedidosContent{
+    border-radius: 10px;
+    box-shadow: 0 24px 64px 0 rgba(18,28,23,0.20);
+    margin-top: 20px;
+}
+
+.titlePedidos{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.textTitlePedidos{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.subTitle{
+    font-size: 12px;
+    color: #66706B;
+}
+
+.statusPedido{
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 10px;
+    font-weight: bold;
+    
+}
+
+.statusPEN{
+    background-color: #f59e0b;
+}
+
+.statusEmAndamento{
+    background-color: #3478f6;
+    color:white;
+}
+
+.statusCON{
+    background-color: #16a34a;
+    color:white;
+}
+
+.totalStyle{
+    border: #16a34a 1px solid;
+}
+
+#listaPedidosContainer{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pedidoItem{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 0.8px solid #E4E8E7;
+    background: #FFF;
+}
+
+.dadosPedido{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.firstRow{
+    padding-bottom: 10px;
+    border-bottom: 0.8px solid #E4E8E7;
+    margin-bottom: 10px;
+}
+
+.idPedido{
+    color: #5EAE36;
+    font-family: "IBM PLEX";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.clientePedido{
+    color: #171A19;
+    font-family: "DMSans";
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.descPedido{
+    color: #66706B;
+    font-family: "DMSans";
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.obsPedido{
+    color: #98A19C;
+    font-family: "DMSans";
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.valorContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+
+.valorPedido{
+    color: #171A19;
+    font-family: "DMSans";
+    font-size: 20px;
+    font-weight: 700;
+    
+}
+
+.horaPedido{
+    color: #98A19C;
+    font-family: "DMSans";
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap:8px;
+    align-items: center;
+}
+
+.acoesPedido{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.btnEditar{
+    display: flex;
+    min-height: 32px;
+    padding: 0 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.btnExcluir{
+    display: flex;
+    min-height: 32px;
+    padding: 0 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.btnExcluir:hover{
+    background-color: rgba(251, 209, 209, 0.923);
+    color:#c00e0e
+}
+
+.btnEditar:hover{
+    background-color: rgba(219, 251, 209, 0.923);
+    color:#11c00e
+}
+
+select option {
+    background-color: white;
+    color: #333;
+}
+
+select{
+    border: none;
+    height: 30px;
+    font-size: 12px !important;
+}
+
+.logo img{
+    width: 159.91px;
+    height: 68.33px;
+}
+
+.dataAtual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
