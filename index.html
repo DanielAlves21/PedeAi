@@ -9,7 +9,9 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">PedeAí</div>
+        <div class="logo">
+            <img src="./imagens/logo.png" alt="logo do sistema"/>
+        </div>
         <div class="dataAtual"><span id="dataAtual">26/09/2026</span></div>
     </div>
     <div class="content">
@@ -21,32 +23,40 @@
                 
             </div>
             <div class="btnContent">
-                <button class="btn" id="btnNewOrder">+ Novo pedido</button>
+                <button class="btn" id="btnNewOrder"><i class="fa-solid fa-plus"></i> Novo pedido</button>
             </div>
         </div>
         <div class="cards">
-            <div class="todosOsPedidos">
+            <div class="todosOsPedidos cardItem">
                 <span class="titleCard">TODOS OS PEDIDOS</span>
                 <span class="valueCard" id="totalPedidos" ></span>
             </div>
-            <div class="pendentes">
+            <div class="pendentes cardItem">
                 <span class="titleCard">PENDENTES</span>
                 <span class="valueCard" id="totalPendentes"></span>
             </div>
-            <div class="emPreparo">
+            <div class="emPreparo cardItem">
                 <span class="titleCard">EM ANDAMENTO</span>
                 <span class="valueCard" id="totalEmAndamento"></span>
             </div>
-            <div class="concluidos">
+            <div class="concluidos cardItem">
                 <span class="titleCard">CONCLUÍDOS</span>
                 <span class="valueCard" id="totalConcluidos"></span>
             </div>      
         </div>
-
-
         
-        <div id="listaPedidosContainer">
-
+        <div class="pedidosContent">
+            <div class="row titlePedidos">
+                <div class="textTitlePedidos">
+                    <span class="title">Pedidos Recentes</span>
+                    <span class="subTitle"> Gerencie o status de todos os pedidos</span>
+                </div>
+                <div class="badge">
+                    <span class="statusPedido totalStyle" id="totalPedidosGerenciamento"></span>
+                </div>
+            </div>
+            <div id="listaPedidosContainer">
+            </div>
         </div>
     </div>
     <dialog class="novoPedido" id="dialogNovoPedido">

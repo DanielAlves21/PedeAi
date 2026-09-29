@@ -2,8 +2,11 @@ let listaPedidoGlobal = JSON.parse(localStorage.getItem("pedidos")) || [];
 
 const button = document.querySelector("#btnNewOrder");
 const dialogNovoPedido = document.querySelector ("#dialogNovoPedido");
+const dataAtual = document.querySelector("#dataAtual");
+dataAtual.innerHTML = new Date().toLocaleDateString("pt-BR");
 
-// inputs novo pedido
+
+//inputs novo pedido
 const clientePedido = document.querySelector("#cliente");
 const descPedido = document.querySelector("#pedido");
 const valorPedido = document.querySelector("#valor");
@@ -14,6 +17,10 @@ const totalPedidos = document.querySelector("#totalPedidos");
 const totalPendentes = document.querySelector("#totalPendentes");
 const totalEmAndamento = document.querySelector("#totalEmAndamento");
 const totalConcluidos = document.querySelector("#totalConcluidos");
+const totalPedidosGerenciamento = document.querySelector("#totalPedidosGerenciamento");
+
+
+
 
 button.onclick = function () {
     dialogNovoPedido.showModal()
@@ -40,9 +47,9 @@ btnRegistrarPedido.onclick = function() {
 
     const dataHora = new Date();
     const hora = dataHora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit"});
-    const data = dataHora.toLocaleTimeString("pt-BR");
+    const data = dataHora.toLocaleDateString("pt-BR");
 
-
+        
     // montando o objeto JSON do pedido
     let pedidoObj = {
         "nomeCliente": clientePedido.value,
@@ -71,6 +78,9 @@ btnRegistrarPedido.onclick = function() {
     // passar para a lista de pedidos global
     listaPedidoGlobal = listaPedidos;
 
+    //lista na tela a lista atualizada
+    listagemPedidos();
+
     //fechando a dialog
     dialogNovoPedido.close();
 
@@ -80,53 +90,51 @@ btnRegistrarPedido.onclick = function() {
 }
 
 
- 
+
 function listagemPedidos(){
-    // criando constante referente a div onde vai ficar a visualização dos pedidos.
+
     const listaContainer = document.getElementById("listaPedidosContainer");
 
     listaContainer.innerHTML = "";
     
-    // verificando se a lista de pedidos global está vazia. 
-    // se tiver vazia aparece mensagem de pedido não cadastrado.
     if(listaPedidoGlobal.length === 0 ){
         listaContainer.innerHTML = `<div class="vazio"> Nenhum pedido cadastrado </div>`;
-
+        totalConcluidos.innerHTML = `<span class="numberCard">0</span>  finalizados`;
+        totalEmAndamento.innerHTML = `<span class="numberCard">0</span>  em andamento agora`;
+        totalPendentes.innerHTML = `<span class="numberCard">0</span>  aguardando inicio`;
+        totalPedidos.innerHTML = `<span class="numberCard">0</span>  pedidos cadastrados`;
+        totalPedidosGerenciamento.innerHTML = 0 + " pedidos"; 
         return false;
     }
 
-    // crianfo a visualização dos pedidos, com a estrutura de repetição forEach.
     listaPedidoGlobal.forEach((pedido, index) => {
-    // criando elementto div, que vai receber os dados do pedido.
-        const elementItem = document.createElement("div");
-    //adicionando a classe pedidoItem ao elemento div criado anteriormente.
-        elementItem.classList.add("pedidoItem");
-    //atribuindo estrutura HTML e os dados do pedido ao elemento div criado anteriormente.
-        elementItem.innerHTML = `
 
-            <div class="row">
+        
+        const elementItem = document.createElement("div");
+
+        elementItem.classList.add("pedidoItem");
+
+        elementItem.innerHTML = `
+            <div class="row firstRow">
                 <div class="dadosPedido">
                     <span class="idPedido"> #${index}</span>
                     <span class="clientePedido">${pedido.nomeCliente}</span>
                     <span class="descPedido">${pedido.descPedido}</span>
-                    <span class="ObsPedido">${pedido.observacoesPedido}</span>
+                    <span class="obsPedido">${pedido.observacoesPedido}</span>
                 </div>
                 <div>
-                    <span class="statusPedido">${pedido.statusPedido}</span>
+                    <span ${pedido.statusPedido === "Pendente" ? "class= 'statusPedido statusPEN'" : pedido.statusPedido === "Em andamento" ? "class= 'statusPedido statusEmAndamento'" : pedido.statusPedido === "Concluído" ? "class= 'statusPedido statusCON'" : ""   }>${pedido.statusPedido}</span>
                 </div>
             </div>
 
-            <hr/>
-
             <div class="row">
                 <div class="valorContainer">
-                    <span class="valorPedido">${pedido.valorPedido}</span>
-                    <span class="horaPedido">${pedido.dataHora}</span>
+                    <span class="valorPedido">R$${pedido.valorPedido}</span>
+                    <span class="horaPedido"> <i class="fa-duotone fa-solid fa-clock"></i> ${pedido.dataHora}</span>
                 </div>
-
                 <div class="acoesPedido">
                     <div class="selectStatus">
-                        <select>
+                        <select ${pedido.statusPedido === "Pendente" ? "class= 'statusPedido statusPEN'" : pedido.statusPedido === "Em andamento" ? "class= 'statusPedido statusEmAndamento'" : pedido.statusPedido === "Concluído" ? "class= 'statusPedido statusCON'" : ""   }>
                             <option value="Pendente" ${pedido.statusPedido === "Pendente" ? "selected" : ""}>Pendente</option>
                             <option value="Em andamento" ${pedido.statusPedido === "Em andamento" ? "selected" : ""}>Em andamento</option>
                             <option value="Concluído" ${pedido.statusPedido === "Concluído" ? "selected" : ""}>Concluído</option>
@@ -137,7 +145,7 @@ function listagemPedidos(){
                 </div>
             </div>
         `;
-        //adicionando a div container o elemento filho que contém as informações do pedido.
+
         listaContainer.appendChild(elementItem);
 
         //Contagem de pedidos totais e por status
@@ -146,12 +154,15 @@ function listagemPedidos(){
         let concluidos = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Concluído").length;
         let totalPedidosQtd = listaPedidoGlobal.length;
 
+
         //adicionando quantidas aos cards respectivos
-        totalConcluidos.innerHTML = concluidos + " finalizados";
-        totalEmAndamento.innerHTML = emAndamento + " em andamento agora";
-        totalPendentes.innerHTML = pendentes + " aguardando inicio";
-        totalPedidos.innerHTML = totalPedidosQtd + " pedidos cadastrados";
-    
+        totalConcluidos.innerHTML = `<span class="numberCard">${concluidos}</span>  finalizados`;
+        totalEmAndamento.innerHTML = `<span class="numberCard">${emAndamento}</span>  em andamento agora`;
+        totalPendentes.innerHTML = `<span class="numberCard">${pendentes}</span>  aguardando inicio`;
+        totalPedidos.innerHTML = `<span class="numberCard">${totalPedidosQtd}</span>  pedidos cadastrados`;
+        totalPedidosGerenciamento.innerHTML = totalPedidosQtd + " pedidos"; 
+
+
     });
 
 
@@ -159,6 +170,4 @@ function listagemPedidos(){
 }
 
 listagemPedidos();
-
-
 
