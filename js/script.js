@@ -6,23 +6,46 @@ const btnSalvarEdicao = document.querySelector("#btnSalvarEdicao");
 const btnCancelNovoPedido = document.querySelector("#btnCancelNovoPedido");
 const closeIcon = document.querySelector("#closeIcon");
 
+//Configuração da data para mostrar na tela a data atual
+const dataAtual = document.querySelector("#dataAtual");
+dataAtual.innerHTML = new Date().toLocaleDateString("pt-BR");
+
 // Inputs
 const clientePedido = document.querySelector("#cliente");
 const descPedido = document.querySelector("#pedido");
 const valorPedido = document.querySelector("#valor");
 const observacoesPedido = document.querySelector("#observacoes");
 
+//cards de contagem dos pedidos
+const totalPedidos = document.querySelector("#totalPedidos");
+const totalPendentes = document.querySelector("#totalPendentes");
+const totalEmAndamento = document.querySelector("#totalEmAndamento");
+const totalConcluidos = document.querySelector("#totalConcluidos");
+const totalPedidosGerenciamento = document.querySelector("#totalPedidosGerenciamento");
+
+const titleDialog = document.querySelector("#titleDialog");
+const subTitleDialog = document.querySelector("#subTitleDialog");
+
 // Variável global com persistência
 let listaPedidoGlobal = JSON.parse(localStorage.getItem("pedidos")) || [];
 
-// 👉 Abrir modal de novo pedido
+// Abrir modal de novo pedido
 btnNewOrder.onclick = function () {
+    // limpar inputs antes de criar novo pedido
+    clientePedido.value = '';
+    descPedido.value = '';
+    valorPedido.value = '';
+    observacoesPedido.value = '';
+
+
+    titleDialog.innerHTML = "Novo Pedido";
+    subTitleDialog.innerHTML = "Registrar novo pedido";
     dialogNovoPedido.showModal();
     btnRegistrarPedido.style.display = "inline-block";
     btnSalvarEdicao.style.display = "none";
 };
 
-// 👉 Fechar modal
+// Fechar modal
 btnCancelNovoPedido.onclick = function () {
     dialogNovoPedido.close();
 };
@@ -30,28 +53,38 @@ closeIcon.onclick = function () {
     dialogNovoPedido.close();
 };
 
-// 📝 Função para registrar novo pedido
+// Função para registrar novo pedido
 btnRegistrarPedido.onclick = function() {
+     //validação dos inputs - verificando se os inputs estão vazios
     if (clientePedido.value == '' || descPedido.value == '' || valorPedido.value == '' || observacoesPedido.value == '' ) {
        alert("Preencha todos os campos");
        return false;
     }
 
+    //configuração da data atual para adicionar automaticamente no pedido
     const dataHora = new Date();
     const hora = dataHora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit"});
     const data = dataHora.toLocaleDateString("pt-BR");
 
+    // montando o objeto JSON do pedido
     let pedidoObj = {
         "nomeCliente": clientePedido.value,
         "descPedido":  descPedido.value,
         "valorPedido": valorPedido.value,
         "observacoesPedido": observacoesPedido.value,
-        "statusPedido": "Pendente", // ✅ Critério: todo pedido inicia como Pendente
+        "statusPedido": "Pendente", 
         "dataHora": data+" - "+hora
     }
     
-    listaPedidoGlobal.push(pedidoObj);
-    localStorage.setItem("pedidos",JSON.stringify(listaPedidoGlobal));
+
+    //capturando lista de pedidos do localStorage, se não tiver pedidos retorna um array vazio
+    let listaPedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+
+    //adicionando um novo pedido a lista de pedidos
+    listaPedidos.push(pedidoObj);
+
+    //armazenando pedidos ao localStorage
+    localStorage.setItem("pedidos",JSON.stringify(listaPedidos));
     
     // limpar inputs
     clientePedido.value = '';
@@ -59,12 +92,20 @@ btnRegistrarPedido.onclick = function() {
     valorPedido.value = '';
     observacoesPedido.value = '';
 
+    // passar para a lista de pedidos global
+    listaPedidoGlobal = listaPedidos;
+
+    //lista na tela a lista atualizada
     listagemPedidos();
+
+    //fechando a dialog
     dialogNovoPedido.close();
+
+    //informando ao usuario feedback de sucesso
     alert("Pedido cadastrado com sucesso");
 }
 
-// 📝 Função para salvar edição
+// Função para salvar edição
 btnSalvarEdicao.onclick = function() {
     if (clientePedido.value == '' || descPedido.value == '' || valorPedido.value == '' || observacoesPedido.value == '' ) {
        alert("Preencha todos os campos");
@@ -85,13 +126,18 @@ btnSalvarEdicao.onclick = function() {
     btnRegistrarPedido.style.display = "inline-block";
 }
 
-// 🔄 Função para listar pedidos
+// Função para listar pedidos
 function listagemPedidos(){
     const listaContainer = document.getElementById("listaPedidosContainer");
     listaContainer.innerHTML = "";
     
     if(listaPedidoGlobal.length === 0 ){
         listaContainer.innerHTML = `<div class="vazio"> Nenhum pedido cadastrado </div>`;
+        totalConcluidos.innerHTML = `<span class="numberCard">0</span>  finalizados`;
+        totalEmAndamento.innerHTML = `<span class="numberCard">0</span>  em andamento agora`;
+        totalPendentes.innerHTML = `<span class="numberCard">0</span>  aguardando inicio`;
+        totalPedidos.innerHTML = `<span class="numberCard">0</span>  pedidos cadastrados`;
+        totalPedidosGerenciamento.innerHTML = 0 + " pedidos"; 
         return false;
     }
 
@@ -108,7 +154,7 @@ function listagemPedidos(){
                     <span class="obsPedido">${pedido.observacoesPedido}</span>
                 </div>
                 <div>
-                    <span class="statusPedido">${pedido.statusPedido}</span>
+                    <span ${pedido.statusPedido === "Pendente" ? "class= 'statusPedido statusPEN'" : pedido.statusPedido === "Em andamento" ? "class= 'statusPedido statusEmAndamento'" : pedido.statusPedido === "Concluído" ? "class= 'statusPedido statusCON'" : ""   }>${pedido.statusPedido}</span>
                 </div>
             </div>
 
@@ -118,9 +164,9 @@ function listagemPedidos(){
                     <span class="horaPedido"><i class="fa-solid fa-clock"></i> ${pedido.dataHora}</span>
                 </div>
                 <div class="acoesPedido">
-                    <!-- ✅ Interface de alteração de status -->
+                    <!-- Interface de alteração de status -->
                     <div class="selectStatus">
-                        <select>
+                        <select ${pedido.statusPedido === "Pendente" ? "class= 'statusPedido statusPEN'" : pedido.statusPedido === "Em andamento" ? "class= 'statusPedido statusEmAndamento'" : pedido.statusPedido === "Concluído" ? "class= 'statusPedido statusCON'" : ""   }>
                             <option value="Pendente" ${pedido.statusPedido === "Pendente" ? "selected" : ""}>Pendente</option>
                             <option value="Em andamento" ${pedido.statusPedido === "Em andamento" ? "selected" : ""}>Em andamento</option>
                             <option value="Concluído" ${pedido.statusPedido === "Concluído" ? "selected" : ""}>Concluído</option>
@@ -134,15 +180,30 @@ function listagemPedidos(){
 
         listaContainer.appendChild(elementItem);
 
-        // 🔄 Lógica de alteração de status
+        //Contagem de pedidos totais e por status
+        let pendentes = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Pendente").length;
+        let emAndamento = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Em andamento").length;
+        let concluidos = listaPedidoGlobal.filter(pedido => pedido.statusPedido === "Concluído").length;
+        let totalPedidosQtd = listaPedidoGlobal.length;
+
+
+        //adicionando quantidas aos cards respectivos
+        totalConcluidos.innerHTML = `<span class="numberCard">${concluidos}</span>  finalizados`;
+        totalEmAndamento.innerHTML = `<span class="numberCard">${emAndamento}</span>  em andamento agora`;
+        totalPendentes.innerHTML = `<span class="numberCard">${pendentes}</span>  aguardando inicio`;
+        totalPedidos.innerHTML = `<span class="numberCard">${totalPedidosQtd}</span>  pedidos cadastrados`;
+        totalPedidosGerenciamento.innerHTML = totalPedidosQtd + " pedidos"; 
+
+
+        //  Lógica de alteração de status
         const selectStatus = elementItem.querySelector("select");
         selectStatus.addEventListener("change", (e) => {
-            listaPedidoGlobal[index].statusPedido = e.target.value; // ✅ Atualiza status
-            localStorage.setItem("pedidos", JSON.stringify(listaPedidoGlobal)); // ✅ Persiste alteração
-            listagemPedidos(); // ✅ Atualiza interface
+            listaPedidoGlobal[index].statusPedido = e.target.value; //  Atualiza status
+            localStorage.setItem("pedidos", JSON.stringify(listaPedidoGlobal)); //  Persiste alteração
+            listagemPedidos(); //  Atualiza interface
         });
 
-        // ❌ Exclusão
+        //  Exclusão
         const btnExcluir = elementItem.querySelector(".btnExcluir");
         btnExcluir.addEventListener("click", () => {
             if(confirm("Deseja realmente excluir este pedido?")) {
@@ -152,13 +213,16 @@ function listagemPedidos(){
             }
         });
 
-        // 📝 Edição
+        //  Edição
         const btnEditar = elementItem.querySelector(".btnEditar");
         btnEditar.addEventListener("click", () => {
             clientePedido.value = listaPedidoGlobal[index].nomeCliente;
             descPedido.value = listaPedidoGlobal[index].descPedido;
             valorPedido.value = listaPedidoGlobal[index].valorPedido;
             observacoesPedido.value = listaPedidoGlobal[index].observacoesPedido;
+
+            titleDialog.innerHTML = "Editar Pedido";
+            subTitleDialog.innerHTML = "Edite o pedido conforme desejar.";
 
             dialogNovoPedido.showModal();
             btnRegistrarPedido.style.display = "none";
@@ -168,7 +232,7 @@ function listagemPedidos(){
     });
 }
 
-// 👉 Inicializa a listagem ao carregar
+//  Inicializa a listagem ao carregar
 listagemPedidos();
 
 
