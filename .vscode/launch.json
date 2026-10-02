@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Abrir index.html no Chrome",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "edge",
+      "request": "launch",
+      "name": "Abrir index.html no Edge",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "Abrir index.html no Firefox",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "pwa-msedge",
+      "request": "launch",
+      "name": "Debug com Edge (PWA)",
+      "file": "${workspaceFolder}/index.html"
+    }
+  ]
+}

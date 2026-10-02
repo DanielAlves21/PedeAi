@@ -950,3 +950,58 @@ select{
     justify-content: center;
     align-items: center;
 }
+#btnRegistrarPedido,
+#btnSalvarEdicao {
+  background-color: #007bff; /* azul padrão */
+  color: #fff;
+ padding: 15px;
+    border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#btnRegistrarPedido:hover,
+#btnSalvarEdicao:hover {
+  background-color: #0056b3; /* azul mais escuro no hover */
+}
+
+#btnSalvarEdicao {
+  display: none; /* começa escondido */
+}
+.footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-footer {
+  width: 70px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* ✨ Efeito hover na logo */
+.logo-footer:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.footer p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+
+

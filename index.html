@@ -20,16 +20,16 @@
                 <span class="textAccent">VISÃO GERAL</span>
                 <span class="tittle">GESTÃO DE PEDIDOS</span>
                 <span class="slogan">Acompanhe cada pedido, do cadastro à conclusão</span>
-                
             </div>
             <div class="btnContent">
+                <!-- OBS: botão com id correto para o JS -->
                 <button class="btn" id="btnNewOrder"><i class="fa-solid fa-plus"></i> Novo pedido</button>
             </div>
         </div>
         <div class="cards">
             <div class="todosOsPedidos cardItem">
                 <span class="titleCard">TODOS OS PEDIDOS</span>
-                <span class="valueCard" id="totalPedidos" ></span>
+                <span class="valueCard" id="totalPedidos"></span>
             </div>
             <div class="pendentes cardItem">
                 <span class="titleCard">PENDENTES</span>
@@ -55,52 +55,69 @@
                     <span class="statusPedido totalStyle" id="totalPedidosGerenciamento"></span>
                 </div>
             </div>
-            <div id="listaPedidosContainer">
-            </div>
+            <div id="listaPedidosContainer"></div>
         </div>
     </div>
+
+    <!-- MODAL DE NOVO PEDIDO -->
     <dialog class="novoPedido" id="dialogNovoPedido">
         <div class="row mb20">
           <div class="texts">
              <span class="textAccent">NOVO PEDIDO</span>
-                <span class="tittleDialog">Registrar novo pedido</span>
-                <span class="slogan">Preencha os dados recebidos do cliente.</span>
+             <span class="tittleDialog">Registrar novo pedido</span>
+             <span class="slogan">Preencha os dados recebidos do cliente.</span>
           </div>
           <div class="action">
+            <!-- OBS: ícone com id para fechar -->
             <i class="fa-solid fa-x" id="closeIcon"></i>
           </div>
         </div>
         
-            <div class="grupo">
-                <label class="labelPedido" for="cliente">Nome do cliente </label> 
-                <input class="inputPedido" type="text" id="cliente" placeholder="Ex: Daniel Anjos">
-            </div>
-            <div class="grupo">
-                <label class="labelPedido" for="pedido">Descrição do Pedido </label> 
-                <input class="inputPedido" type="text" id="pedido" placeholder="Descreva o pedido">
-            </div>
-            <div class="grupo">
-                <label class="labelPedido" for="valor">Valor do Pedido</label> </label> 
-                <input class="inputPedido" type="number" id="valor" placeholder="R$ 0,00">
-            </div>
-            <div class="grupo">
-                <label class="labelPedido" for="observacoes">Observações </label> 
-                <input class="inputPedido" type="text" id="observacoes" placeholder="Preferências, local de entrega ou outros detalhes">
-            </div>
-            <div class="info">
-               <i class="fa-duotone fa-solid fa-clock"></i> A data e a hora serão registradas automaticamente, com o status pendente.
-            </div>
-            <div class="grupoBtn mt20">
-                <button class="btnCancel" id="btnCancelNovoPedido">Cancelar</button>
-                <button class="btn" id="btnRegistrarPedido">Registrar Pedido</button>
-            </div>
-        
-        
-        
+        <!-- Inputs com ids corretos -->
+        <div class="grupo">
+            <label class="labelPedido" for="cliente">Nome do cliente </label> 
+            <input class="inputPedido" type="text" id="cliente" placeholder="Ex: Daniel Anjos">
+        </div>
+        <div class="grupo">
+            <label class="labelPedido" for="pedido">Descrição do Pedido </label> 
+            <input class="inputPedido" type="text" id="pedido" placeholder="Descreva o pedido">
+        </div>
+        <div class="grupo">
+            <label class="labelPedido" for="valor">Valor do Pedido</label> 
+            <input class="inputPedido" type="number" id="valor" placeholder="R$ 0,00">
+        </div>
+        <div class="grupo">
+            <label class="labelPedido" for="observacoes">Observações </label> 
+            <input class="inputPedido" type="text" id="observacoes" placeholder="Preferências, local de entrega ou outros detalhes">
+        </div>
+        <div class="info">
+           <i class="fa-duotone fa-solid fa-clock"></i> A data e a hora serão registradas automaticamente, com o status pendente.
+        </div>
 
-         
+        <!-- Botões -->
+        <div class="grupoBtn mt20">
+            <button class="btnCancel" id="btnCancelNovoPedido">Cancelar</button>
+            
+            <!-- OBS: botão de registrar pedido -->
+            <button class="btn" id="btnRegistrarPedido">Registrar Pedido</button>
+            
+            <!-- OBS: botão de salvar edição (inicialmente escondido) -->
+            <button class="btn" id="btnSalvarEdicao" style="display:none;">Salvar edição</button>
+        </div>
     </dialog>
-    <script src="./js/script.js">  
-    </script>
+
+    <!-- Script -->
+    <script src="./js/script.js"></script>
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+        <!-- Logo genérica -->
+            <img src="./imagens/cloud-coding.png" alt="Logo genérica" class="logo-footer">
+
+        <!-- Texto de direitos reservados -->
+            <p>© 2026 EquipeCoding — Todos os direitos reservados</p>
+        </div>
+    </footer>
+
 </body>
 </html>
