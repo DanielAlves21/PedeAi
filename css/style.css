@@ -950,22 +950,7 @@ select{
     justify-content: center;
     align-items: center;
 }
-#btnRegistrarPedido,
-#btnSalvarEdicao {
-  background-color: #007bff; /* azul padrão */
-  color: #fff;
- padding: 15px;
-    border: none;
-  padding: 10px 20px;
-  margin-left: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-#btnRegistrarPedido:hover,
-#btnSalvarEdicao:hover {
-  background-color: #0056b3; /* azul mais escuro no hover */
-}
+
 
 #btnSalvarEdicao {
   display: none; /* começa escondido */
